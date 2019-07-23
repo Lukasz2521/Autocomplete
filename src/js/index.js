@@ -12,11 +12,21 @@ const createHintList = (element) => {
     }
 }
 
+const getData = async (source) => {
+    let response = await fetch(source);
+    return await response.json();
+};
+
+const findMatchingHints = (word, data) => {
+
+};
+
 const autocompleteManager = (selector, options) => {
     const input = document.querySelector(selector);
     input.addEventListener('keydown', () => {
         if (input.value.length > 0) {
-
+            let data = (async () => await getData())(); // TODO - add data to cache
+            findMatchingHints(input.value, data);
         }
     }, false);
 }
